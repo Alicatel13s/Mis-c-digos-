@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cuadrícula interactiva</title>
+  <style>
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr); /* 12 columns */
+      grid-template-rows: repeat(8, 1fr); /* 8 rows */
+      width: 400px; /* Adjust width accordingly */
+      height: 300px; /* Adjust height accordingly */
+    }
+
+    .cell {
+      border: 1px solid #ccc;
+      text-align: center; /* Center text within the cell */
+      cursor: pointer;
+      position: relative;
+      padding: 10px;
+    }
+
+    /* Remove circles from the first and second cells */
+    .cell:nth-child(1), .cell:nth-child(2) .circle {
+      display: none;
+    }
+
+    .circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div id="grid">
+    </div>
+
+  <script>
+    const grid = document.getElementById('grid');
+    const cells = document.querySelectorAll('.cell');
+
+    // Adjust the loop to create 12 * 8 cells
+    for (let i = 0; i < 129; i++) { /* 12 * 8 = 14 cells */
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+
+      // Add text content to the first two cells
+      if (i === 0) {
+        cell.textContent = "FT1";
+      } else if (i === 2
+     ) {
+        cell.textContent = "FT1";
+        
+      }
+      
+else if (i === 3) {
+        cell.textContent = "FT2";
+        
+     }
+      else if (i === 4) {
+        cell.textContent = "FS1";
+        
+      }
+      else if (i === 5) {
+        cell.textContent = "FS2";
+        
+      }
+      else if (i === 6) {
+        cell.textContent = "BAL";
+        
+      }
+      
+      
+      else if (i === 7) {
+        cell.textContent = "PB1";
+        
+      }
+      
+      else if (i === 8) {
+        cell.textContent = "PB2";
+        
+      }
+      
+      else if (i === 9
+      ) {
+        cell.textContent = "PB3";
+        
+      }
+      else if (i === 10) {
+        cell.textContent = "T1";
+        
+      }
+      
+      else if (i ===11 ) {
+        cell.textContent = "T2";
+        
+      }
+      
+      else if (i === 12) {
+        cell.textContent = "T3";
+        
+      }
+      else if (i === 13) {
+        cell.textContent = "T4";
+        
+     
+        
+      }
+            else if (i === 14) {
+        cell.textContent = "T5";
+        
+      }
+else if (i === 15) {
+        cell.textContent = "T6";
+        
+      }
+
+else if (i === 16) {
+        cell.textContent = "VLD";
+        
+      }
+      
+else if (i === 17) {
+        cell.textContent = "H4";
+        
+      }
+      
+      
+      else if (i === 33) {
+        cell.textContent = "H5";
+        
+      }
+      
+      else if (i === 49) {
+        cell.textContent = "H6";
+        
+      }
+      else if (i === 65) {
+        cell.textContent = "H7";
+        
+      }
+      else if (i === 81) {
+        cell.textContent = "H8";
+        
+      }
+      else if (i === 97) {
+        cell.textContent = "H9";
+        
+      }
+      else if (i === 113) {
+        cell.textContent = "H10";
+        
+      }
+      
+      
+      
+       else {
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        circle.classList.add('red'); /* Iniciar todos los círculos en verde */
+        cell.appendChild(circle);
+      }
+cell.addEventListener('click', () => {
+  const circle = cell.querySelector('.circle'); // Target the existing circle
+
+  if (color === 'red') {
+    color = 'red';
+  } else if (color === 'green') {
+    color = 'green';
+  } else {
+    color = 'yellow';
+  }
+
+  circle.classList.remove('green', 'red', 'yellow'); // Remove all color classes
+  circle.classList.add(color); // Add the new color class
+});
+
+      grid.appendChild(cell);
+
+      let color = 'green';
+
+      cell.addEventListener('click', () => {
+        if (color === 'red') {
+          color = 'green';
+        } else if (color === 'green') {
+          color = 'yellow';
+        } else {
+          color = 'red';
+        }
+
+        // Remove existing circles before adding a new one on click (for the first two cells)
+        if (i === 0 || i === 1) {
+          cell.querySelectorAll('.circle').forEach(c => c.remove());
+        } else {
+          circle.classList.remove('green', 'red', 'yellow');
+          circle.classList.add(color);
+        }
+      });
+    }
+  </script>
+</body>
+</html><style>#grid {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 800px; /* Adjust width accordingly */
+  height: 400px; /* Adjust height accordingly */
+  padding: 20px; /* Add padding around the grid */
+To display 112 cells in the grid, update the CSS grid properties and the loop in the JavaScript code:
+1. Update CSS grid properties:
+ * Modify grid-template-columns to specify 14 columns instead of 13:
+#grid {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr); /* 14 columns */
+  grid-template-rows: repeat(9, 1fr); /* 9 rows */
+  width: 500px; /* Adjust width accordingly */
+  height: 400px; /* Adjust height accordingly */
+}
+
+2. Update JavaScript loop:
+ * Change the loop condition to iterate 112 times (from < 97 to < 112):
+for (let i = 0; i < 112; i++) {
+  // ... rest of your cell creation code
+}
+
+These adjustments will create a grid with 14 columns and 9 rows, resulting in a total of 112 cells.
+</style>
